@@ -1,15 +1,26 @@
 
-package Command;
+package command;
 
-import Decorator.CategoryDiscount;
-import Decorator.Component;
+import decorator.CategoryDiscount;
+import decorator.Component;
 
+/**
+ * Comando para aplicar un descuento por categoria a un producto.
+ * Implementa la interfaz Command.
+ * */
 public class ApplyCategoryDiscountCommand implements Command{
+    // Atributos
     private Component product;
     private final Component originalProduct;
     private final String category;
     private final double discount;
-    
+
+    /**
+     * Constructor del comando.
+     * @param product Producto al que se le aplicara el descuento.
+     * @param category Categoria a la que se le aplicara el descuento.
+     * @param discount Porcentaje de descuento a aplicar (0.0 - 1.0).
+     * */
     public ApplyCategoryDiscountCommand(Component product, String category, double discount){
         this.originalProduct = product;
         this.product = product;
@@ -17,6 +28,16 @@ public class ApplyCategoryDiscountCommand implements Command{
         this.discount = discount;
     }
 
+    // Getters
+    /**
+     * Obtiene el producto con el descuento aplicado.
+     * @return Producto con el descuento aplicado.
+     * */
+    public Component getProduct(){
+        return product;
+    }
+
+    // Metodos de la interfaz Command
     @Override
     public void ejecutar() {
         // Aplicar el decorador de categoria
@@ -27,10 +48,7 @@ public class ApplyCategoryDiscountCommand implements Command{
     @Override
     public void deshacer() {
         product = originalProduct;
-        System.out.println("Descuento de categoría removido: " + product.getDescription());
+        System.out.println("Descuento de categoria removido: " + product.getDescription());
     }
-    
-    public Component getProduct(){
-        return product;
-    }
+
 }

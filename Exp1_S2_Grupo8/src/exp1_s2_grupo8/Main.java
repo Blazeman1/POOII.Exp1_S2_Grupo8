@@ -1,13 +1,13 @@
 
 package exp1_s2_grupo8;
 
-import Command.ApplyCategoryDiscountCommand;
-import Command.ApplyGeneralDiscountCommand;
-import Command.Command;
-import Command.DiscountInvoker;
-import Singleton.DiscountManager;
-import Decorator.Component;
-import Decorator.Product;
+import command.ApplyCategoryDiscountCommand;
+import command.ApplyGeneralDiscountCommand;
+import command.Command;
+import command.DiscountInvoker;
+import decorator.Component;
+import decorator.Product;
+import singleton.DiscountManager;
 
 public class Main {
 
@@ -16,7 +16,7 @@ public class Main {
         
         // Crear productos
         Component camisa = new Product("Camisa", 15000, "Camisas");
-        Component pantalon = new Product("Pantalón Jeans", 80000, "Pantalones");
+        Component pantalon = new Product("PantalÃ³n Jeans", 80000, "Pantalones");
         Component vestido = new Product("Vestido Negro", 120000, "Vestidos");
         
         System.out.println("Productos originales:");
@@ -28,7 +28,7 @@ public class Main {
         // Usar Singleton DiscountManager
         DiscountManager discountManager = DiscountManager.getInstance();
         
-        // Aplicar descuentos usando los métodos Singleton
+        // Aplicar descuentos usando los mÃ©todos Singleton
         Component camisaConDescuento = discountManager.applyGeneralDiscount(camisa);
         Component pantalonConDescuento = discountManager.applyCategoryDiscount(pantalon, "Pantalones", 15.0);
         Component vestidoConDescuento = discountManager.applyGeneralDiscount(vestido);
@@ -39,14 +39,14 @@ public class Main {
         System.out.println(vestidoConDescuento.getDescription());
         System.out.println();
         
-        // Mostrar comparación de precios
-        System.out.println("  --- Comparación de Precios ---");
+        // Mostrar comparaciÃ³n de precios
+        System.out.println("  --- ComparaciÃ³n de Precios ---");
         System.out.println("Camisa - Original: $" + camisa.getPrice()+ " | Con Descuento: $" + camisaConDescuento.getPrice());
         System.out.println("Pantalon - Original: $" + pantalon.getPrice() + " | Con Descuento: $" + pantalonConDescuento.getPrice());
         System.out.println("Vestido - Original: $" + vestido.getPrice() + " | Con Descuento: $" + vestidoConDescuento.getPrice());
         System.out.println();
         
-        // Usar el patrón Command
+        // Usar el patrï¿½n Command
         System.out.println("Aplicando descuentos con Command Pattern: ");
         
         Command descuentoGeneral = new ApplyGeneralDiscountCommand(camisa);
